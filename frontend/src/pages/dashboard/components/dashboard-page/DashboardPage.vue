@@ -100,7 +100,7 @@
           </div>
 
           <!-- Seat rows -->
-          <div class="space-y-2 overflow-x-auto pb-4">
+          <div class="space-y-2 overflow-x-auto p-4">
             <div
               v-for="row in sortedRows"
               :key="row"
