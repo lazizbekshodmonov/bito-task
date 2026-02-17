@@ -1,0 +1,61 @@
+app:
+  name: Distributed Seat Reservation System
+  domain: ${DOMAIN:http://localhost:8080}
+
+server:
+  port: ${PORT:8080}
+  environment: ${NODE_ENV:development}
+  swagger_ui: ${SWAGGER_UI:true}
+  api_doc_path: '/api-docs'
+
+database:
+  postgres:
+    host: ${POSTGRES_HOST:localhost}
+    port: ${POSTGRES_PORT:5432}
+    username: ${POSTGRES_USER:dsrs_db}
+    password: ${POSTGRES_PASSWORD:dsrs_db}
+    name: ${POSTGRES_DB:dsrs_db}
+    synchronize: true
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+#    password: ${REDIS_PASSWORD}
+
+file:
+  static_root: 'public/uploads'
+  static_serve_root: '/api/static'
+
+security:
+  mode: ${NODE_ENV:development}
+  jwt:
+    jwt_secret: ${JWT_SECRET:default_jwt_secret}
+    access_expires_in: 30m
+    refresh_expires_in: 1d
+  hash:
+    secret: ${HASH_SECRET:default_hash_secret}
+  otp:
+    default: "0"
+    length: ${OTP_LENGTH:6}
+    expire_time: 5  # minute
+
+    limit:
+      max-attempts: 5
+      window-min: 60 # minutes
+
+
+mail:
+  resend:
+    api_key: ${RESENT_API_KEY}
+    from: support@mockly.uz
+
+cors:
+  allowed-origins:
+    - ${CORS_ORIGIN_LOCAL_FRONTEND:http://localhost:7070}
+    - 'http://localhost:5173'
+    - ${CORS_ORIGIN_LOCAL_BACKEND:http://localhost:8080}
+
+# Default admin user (created on application startup if not exists)
+admin:
+  email: ${ADMIN_EMAIL:admin@dsrs.uz}
+  password: ${ADMIN_PASSWORD:Admin@123!}
+  name: ${ADMIN_NAME:Super Admin}
