@@ -1,17 +1,17 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { DataSource, EntityManager } from 'typeorm';
-import { ReservationEntity } from './entities/reservation.entity';
-import { SeatEntity } from '../seats/entities/seat.entity';
-import { ReservationStatus } from './enums/reservation-status.enum';
-import { SeatStatus } from '../seats/enums/seat-status.enum';
-import { EventsGateway } from '../events/events.gateway';
-import { SeatUpdatePayload } from '../events/events.gateway';
-import { ReservationRepository } from './repositories/reservation.repository';
+import { ReservationEntity } from '../entities/reservation.entity';
+import { SeatEntity } from '../../seats/entities/seat.entity';
+import { ReservationStatus } from '../enums/reservation-status.enum';
+import { SeatStatus } from '../../seats/enums/seat-status.enum';
+import { EventsGateway } from '../../events/events.gateway';
+import { SeatUpdatePayload } from '../../events/events.gateway';
+import { ReservationRepository } from '../repositories/reservation.repository';
 
 @Injectable()
 export class ExpirationService {
-  private readonly logger = new Logger(ExpirationService.name);
+  private readonly logger = new Logger('CRON JOB');
 
   constructor(
     private readonly dataSource: DataSource,

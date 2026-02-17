@@ -13,12 +13,6 @@ export const ERROR_MESSAGES: Record<AppExceptionCode, LocalizedString> = {
     en: 'An unknown error occurred.',
     cyr: 'Номаълум хатолик юз берди.',
   },
-  EMAIL_SEND_FAILED: {
-    uz: 'Email yuborishda xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko\'ring.',
-    ru: 'Не удалось отправить письмо. Пожалуйста, попробуйте позже.',
-    en: 'Failed to send email. Please try again later.',
-    cyr: 'Email юборишда хатолик юз берди. Илтимос, кейинроқ қайта уриниб кўринг.',
-  },
   AUTH_INVALID_CREDENTIALS: {
     uz: "Tizimga kirish ma'lumotlari noto'g'ri. Iltimos, qaytadan urinib ko‘ring.",
     ru: 'Неверные учетные данные. Пожалуйста, попробуйте снова.',

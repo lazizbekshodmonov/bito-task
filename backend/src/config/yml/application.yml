@@ -43,11 +43,6 @@ security:
       window-min: 60 # minutes
 
 
-mail:
-  resend:
-    api_key: ${RESENT_API_KEY}
-    from: support@mockly.uz
-
 cors:
   allowed-origins:
     - ${CORS_ORIGIN_LOCAL_FRONTEND:http://localhost:7070}

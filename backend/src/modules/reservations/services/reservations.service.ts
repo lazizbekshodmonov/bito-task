@@ -1,13 +1,13 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { DataSource, EntityManager } from 'typeorm';
-import { SeatEntity } from '../seats/entities/seat.entity';
-import { ReservationEntity } from './entities/reservation.entity';
-import { SeatStatus } from '../seats/enums/seat-status.enum';
-import { ReservationStatus } from './enums/reservation-status.enum';
-import { ReservationError } from './enums/reservation-error.enum';
-import { EventsGateway } from '../events/events.gateway';
-import { AppException } from '../../common/exceptions/app-exception';
-import { ReservationRepository } from './repositories/reservation.repository';
+import { SeatEntity } from '../../seats/entities/seat.entity';
+import { ReservationEntity } from '../entities/reservation.entity';
+import { SeatStatus } from '../../seats/enums/seat-status.enum';
+import { ReservationStatus } from '../enums/reservation-status.enum';
+import { ReservationError } from '../enums/reservation-error.enum';
+import { EventsGateway } from '../../events/events.gateway';
+import { AppException } from '../../../common/exceptions/app-exception';
+import { ReservationRepository } from '../repositories/reservation.repository';
 
 @Injectable()
 export class ReservationsService {

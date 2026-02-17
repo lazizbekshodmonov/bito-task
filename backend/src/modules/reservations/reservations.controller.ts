@@ -3,7 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { JwtWebGuard } from '../auth/guards';
 import { AuthenticatedUser } from '../auth/decorators';
 import type { JwtPayload } from '../auth/auth.types';
-import { ReservationsService } from './reservations.service';
+import { ReservationsService } from './services/reservations.service';
 import { ReserveSeatDto, ConfirmReservationDto, CancelReservationDto } from './dto';
 import { ReservationEntity } from './entities/reservation.entity';
 import { IdempotencyInterceptor } from '../../common/interceptors/idempotency.interceptor';

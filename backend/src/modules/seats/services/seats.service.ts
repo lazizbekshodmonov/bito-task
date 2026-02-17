@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { SeatEntity } from './entities/seat.entity';
-import { SeatRepository } from './repositories/seat.repository';
+import { SeatEntity } from '../entities/seat.entity';
+import { SeatRepository } from '../repositories/seat.repository';
 
 @Injectable()
 export class SeatsService {
