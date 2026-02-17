@@ -72,7 +72,7 @@ backend/src/
 
 ```
 frontend/src/
-├── assets/style.css             # Global CSS, seat animatsiyalari, glassmorphism
+├── assets/style.css             # Global CSS, seat animatsiyalari, minimalist B&W tema
 ├── components/icons/            # SVG ikonkalar (tabler, carbon, fa)
 ├── composables/
 │   ├── useAuthentication.ts     # Auth tekshiruv
@@ -225,8 +225,8 @@ Idempotency kalitlari endi PostgreSQL jadvalda emas, **Redis** da saqlanadi:
 
 ```
 Backend: ReservationsService → EventsGateway.emitSeatUpdate()
-   ↓ WebSocket
-Frontend: useSocket → seatsStore.updateSeat(seat)
+   ↓ WebSocket (seat:updated / seat:bulk-updated)
+Frontend: useSocket → seatsStore.patchSeatFromSocket(seatId, patch)
    ↓ Reactivity
 UI: SeatIcon avtomatik yangi status ko'rsatadi
 ```
@@ -238,15 +238,27 @@ UI: SeatIcon avtomatik yangi status ko'rsatadi
 **Yechim**:
 - Backend: `expiresAt = NOW + 120 soniya` bilan reservation yaratadi
 - Backend: `@Cron(EVERY_30_SECONDS)` bilan muddati o'tgan rezervatsiyalarni EXPIRED ga o'tkazadi
+- Backend: Lazy expiration — yangi reserve so'rovida muddati o'tgan RESERVED ni darhol EXPIRED qiladi
 - Frontend: `useCountdown(MaybeRefOrGetter)` composable reaktiv countdown timer ko'rsatadi
 - Frontend: Countdown tugaganda "Confirm" tugmasi disabled bo'ladi
+
+**Expiration strategiyasi tanlash asosi**:
+
+| Variant | Afzalligi | Kamchiligi |
+|---------|-----------|------------|
+| Cron job | Oddiy, ishonchli, batch tozalash | Interval oralig'ida kechikish |
+| Lazy expiration | Request kelganda darhol | Hech kim so'ramasa seat RESERVED qoladi |
+| Redis TTL | Aniq vaqtda tetiklanadi | Keyspace Notification at-most-once, ishonchsiz |
+| Background worker | Mustaqil, scale mumkin | 80 seat uchun ortiqcha infra |
+
+Cron + Lazy hybrid tanlandi: Cron asosiy tozalash, Lazy 0-30s gap ni yopadi. Redis TTL ishonchsiz (xabar yo'qolishi mumkin), worker esa kichik loyiha uchun ortiqcha.
 
 ### 3. Race condition himoyasi
 
 **Muammo**: Ikki foydalanuvchi bir vaqtda bitta o'rindiqni band qilishga harakat qilishi mumkin.
 
 **Yechim**:
-- `SERIALIZABLE` tranzaksiya izolyatsiyasi
+- `READ COMMITTED` tranzaksiya izolyatsiyasi
 - Pessimistic write lock (`FOR UPDATE`) seat va reservation yozuvlarida
 - Partial unique index: `UQ_one_active_reservation_per_seat` — bitta o'rindiqda faqat bitta aktiv rezervatsiya
 
@@ -349,9 +361,9 @@ Nginx konfiguratsiyasi:
 
 | Sahifa | Route | Tavsif |
 |---|---|---|
-| Login | `/auth/login` | Glassmorphism dizayn, email/parol, admin login linki |
+| Login | `/auth/login` | Minimalist B&W dizayn, email/parol, admin login linki |
 | Register | `/auth/register` | Ro'yxatdan o'tish formasi, parol validatsiya |
-| Admin Login | `/auth/admin-login` | Qorong'i korporativ dizayn, qalqon ikonka |
+| Admin Login | `/auth/admin-login` | Qorong'i minimalist dizayn, qalqon ikonka |
 | Seat Map | `/seats` | Zal ko'rinishi: Stage, qatorlar, SVG seat ikonkalar, filter, detail panel |
 | My Reservations | `/reservations` | Kartalar ro'yxati, All/Active/Past tablar, countdown, confirm/cancel |
 
@@ -489,7 +501,7 @@ pages/<section>/
 |---|---|---|
 | JWT autentifikatsiya | ✅ | Bearer token, refresh, role-based guards |
 | Real-time yangilanish | ✅ | Socket.IO WebSocket (`seat:updated`, `seat:bulk-updated`) |
-| O'rindiqni band qilish | ✅ | 2 daqiqa countdown, SERIALIZABLE tranzaksiya, pessimistic lock |
+| O'rindiqni band qilish | ✅ | 2 daqiqa countdown, READ COMMITTED tranzaksiya, pessimistic lock |
 | Idempotentlik (Redis) | ✅ | `Idempotency-Key` header, Redis cache 24h TTL (auto-expiry) |
 | Race condition himoyasi | ✅ | Pessimistic lock + partial unique index |
 | Muddati tugash (expiration) | ✅ | Cron job (har 30 soniya), lazy expiration |
@@ -503,6 +515,6 @@ pages/<section>/
 | Xatolik boshqaruvi | ✅ | Lokalizatsiya (4 til), bitta notification |
 | Parol validatsiya | ✅ | 8+ belgi, katta/kichik harf, raqam, maxsus belgi |
 | Swagger dokumentatsiya | ✅ | `/api-docs`, JWT auth, error schemas |
-| Logo | ✅ | SVG seat logo (blue→purple gradient) |
+| Logo | ✅ | SVG seat logo (black) |
 | Logging | ✅ | File rotation, sensitive redaction, request/response logging |
 | Soft delete | ✅ | Foydalanuvchilar o'chirilganda `deleted_at` belgilanadi |
