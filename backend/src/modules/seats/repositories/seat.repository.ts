@@ -17,12 +17,7 @@ export class SeatRepository extends Repository<SeatEntity> {
 
   async findAllWithActiveReservation(): Promise<SeatEntity[]> {
     return this.createQueryBuilder('seat')
-      .leftJoinAndSelect(
-        'seat.reservations',
-        'reservation',
-        'reservation.status IN (:...statuses) AND reservation.expires_at > NOW()',
-        { statuses: [ReservationStatus.RESERVED, ReservationStatus.CONFIRMED] },
-      )
+      .leftJoinAndSelect('seat.reservations', 'reservation', 'reservation.status IN (:...statuses) AND reservation.expires_at > NOW()', { statuses: [ReservationStatus.RESERVED, ReservationStatus.CONFIRMED] })
       .orderBy('seat.row', 'ASC')
       .addOrderBy('seat.number', 'ASC')
       .getMany();

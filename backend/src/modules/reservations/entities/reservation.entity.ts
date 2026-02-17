@@ -49,10 +49,7 @@ export class ReservationEntity extends BaseUuidEntity {
   }
 
   get isActive(): boolean {
-    return (
-      (this.status === ReservationStatus.RESERVED || this.status === ReservationStatus.CONFIRMED) &&
-      !this.isExpired
-    );
+    return (this.status === ReservationStatus.RESERVED || this.status === ReservationStatus.CONFIRMED) && !this.isExpired;
   }
 
   get remainingMs(): number {

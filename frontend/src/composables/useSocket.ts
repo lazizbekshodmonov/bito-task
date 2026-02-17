@@ -2,7 +2,13 @@ import { onMounted, onUnmounted } from "vue";
 import { getSocket, disconnectSocket } from "@/plugins/socket.ts";
 import { useSeatsStore } from "@/stores/seats.store.ts";
 import { queryClient } from "@/utils/query-client.ts";
-import type { ISeat } from "@/services/seats/seat.types";
+
+interface SeatUpdatePayload {
+  seatId: string;
+  label: string;
+  status: string;
+  expiresAt?: string;
+}
 
 export const useSocket = () => {
   const seatsStore = useSeatsStore();
@@ -21,12 +27,14 @@ export const useSocket = () => {
       isFirstConnect = false;
     });
 
-    socket.on("seat:updated", (seat: ISeat) => {
-      seatsStore.updateSeat(seat);
+    socket.on("seat:updated", (payload: SeatUpdatePayload) => {
+      seatsStore.patchSeatFromSocket(payload.seatId, payload);
     });
 
-    socket.on("seat:bulk-updated", (seats: ISeat[]) => {
-      seatsStore.bulkUpdateSeats(seats);
+    socket.on("seat:bulk-updated", (payloads: SeatUpdatePayload[]) => {
+      for (const payload of payloads) {
+        seatsStore.patchSeatFromSocket(payload.seatId, payload);
+      }
     });
   });
 

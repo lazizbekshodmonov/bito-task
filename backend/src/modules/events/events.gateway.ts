@@ -24,9 +24,7 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const address = client.handshake.address;
     const device = (client.handshake.query?.device as string) || 'unknown';
 
-    this.logger.log(
-      `Client connected: ${client.id} | device: ${device} | ip: ${address} | ua: ${userAgent}`,
-    );
+    this.logger.log(`Client connected: ${client.id} | device: ${device} | ip: ${address} | ua: ${userAgent}`);
   }
 
   handleDisconnect(client: Socket): void {

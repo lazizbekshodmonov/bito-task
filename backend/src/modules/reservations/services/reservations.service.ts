@@ -18,12 +18,8 @@ export class ReservationsService {
   ) {}
 
   async reserveSeat(seatId: string, userId: number, idempotencyKey?: string): Promise<ReservationEntity> {
-    return this.dataSource.transaction('SERIALIZABLE', async (manager: EntityManager) => {
-      const seat = await manager
-        .createQueryBuilder(SeatEntity, 'seat')
-        .setLock('pessimistic_write')
-        .where('seat.id = :seatId', { seatId })
-        .getOne();
+    return this.dataSource.transaction('READ COMMITTED', async (manager: EntityManager) => {
+      const seat = await manager.createQueryBuilder(SeatEntity, 'seat').setLock('pessimistic_write').where('seat.id = :seatId', { seatId }).getOne();
 
       if (!seat) {
         throw new AppException(ReservationError.SEAT_NOT_FOUND, HttpStatus.NOT_FOUND);
@@ -72,12 +68,8 @@ export class ReservationsService {
   }
 
   async confirmReservation(reservationId: string, userId: number): Promise<ReservationEntity> {
-    return this.dataSource.transaction('SERIALIZABLE', async (manager: EntityManager) => {
-      const reservation = await manager
-        .createQueryBuilder(ReservationEntity, 'reservation')
-        .setLock('pessimistic_write')
-        .where('reservation.id = :reservationId', { reservationId })
-        .getOne();
+    return this.dataSource.transaction('READ COMMITTED', async (manager: EntityManager) => {
+      const reservation = await manager.createQueryBuilder(ReservationEntity, 'reservation').setLock('pessimistic_write').where('reservation.id = :reservationId', { reservationId }).getOne();
 
       if (!reservation) {
         throw new AppException(ReservationError.RESERVATION_NOT_FOUND, HttpStatus.NOT_FOUND);
@@ -134,12 +126,8 @@ export class ReservationsService {
   }
 
   async cancelReservation(reservationId: string, userId: number): Promise<ReservationEntity> {
-    return this.dataSource.transaction('SERIALIZABLE', async (manager: EntityManager) => {
-      const reservation = await manager
-        .createQueryBuilder(ReservationEntity, 'reservation')
-        .setLock('pessimistic_write')
-        .where('reservation.id = :reservationId', { reservationId })
-        .getOne();
+    return this.dataSource.transaction('READ COMMITTED', async (manager: EntityManager) => {
+      const reservation = await manager.createQueryBuilder(ReservationEntity, 'reservation').setLock('pessimistic_write').where('reservation.id = :reservationId', { reservationId }).getOne();
 
       if (!reservation) {
         throw new AppException(ReservationError.RESERVATION_NOT_FOUND, HttpStatus.NOT_FOUND);

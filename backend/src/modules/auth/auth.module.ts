@@ -19,12 +19,7 @@ import { JwtWebGuard } from './guards/jwt-web.guard';
     }),
   ],
   controllers: [AuthController],
-  providers: [
-    AuthService,
-    AuthJwtService,
-    UserRepository,
-    JwtWebGuard,
-  ],
+  providers: [AuthService, AuthJwtService, UserRepository, JwtWebGuard],
   exports: [JwtModule, AuthService, AuthJwtService, JwtWebGuard],
 })
 export class AuthModule {}

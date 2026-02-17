@@ -92,13 +92,13 @@ export const ERROR_MESSAGES: Record<AppExceptionCode, LocalizedString> = {
     cyr: 'Компания топилмади ёки фаол эмас.',
   },
   AUTH_NOT_EMPLOYEE: {
-    uz: 'Siz bu kompaniyaga kirishga ruxsatingiz yo\'q.',
+    uz: "Siz bu kompaniyaga kirishga ruxsatingiz yo'q.",
     ru: 'У вас нет доступа к этой компании.',
     en: 'You do not have access to this company.',
     cyr: 'Сиз бу компанияга киришга рухсатингиз йўқ.',
   },
   AUTH_EMPLOYEE_NOT_ACTIVE: {
-    uz: 'Sizning xodim profilingiz faol emas. Administrator bilan bog\'laning.',
+    uz: "Sizning xodim profilingiz faol emas. Administrator bilan bog'laning.",
     ru: 'Ваш профиль сотрудника неактивен. Свяжитесь с администратором.',
     en: 'Your employee profile is not active. Please contact the administrator.',
     cyr: 'Сизнинг ходим профилингиз фаол эмас. Администратор билан боғланинг.',
@@ -116,13 +116,13 @@ export const ERROR_MESSAGES: Record<AppExceptionCode, LocalizedString> = {
     cyr: 'Сиз бу компанияга номзод эмассиз.',
   },
   AUTH_CANDIDATE_NOT_ACTIVE: {
-    uz: 'Sizning nomzod profilingiz faol emas. Administrator bilan bog\'laning.',
+    uz: "Sizning nomzod profilingiz faol emas. Administrator bilan bog'laning.",
     ru: 'Ваш профиль кандидата неактивен. Свяжитесь с администратором.',
     en: 'Your candidate profile is not active. Please contact the administrator.',
     cyr: 'Сизнинг номзод профилингиз фаол эмас. Администратор билан боғланинг.',
   },
   AUTH_INVALID_OTP_EMAIL: {
-    uz: 'Ushbu OTP kaliti uchun email manzili noto\'g\'ri.',
+    uz: "Ushbu OTP kaliti uchun email manzili noto'g'ri.",
     ru: 'Неверный адрес электронной почты для данного OTP-ключа.',
     en: 'Invalid email for this OTP key.',
     cyr: 'Ушбу OTP калити учун email манзили нотўғри.',
@@ -140,7 +140,7 @@ export const ERROR_MESSAGES: Record<AppExceptionCode, LocalizedString> = {
     cyr: 'Файл тақдим этилмаган.',
   },
   FILE_UNSUPPORTED_TYPE: {
-    uz: 'Fayl turi qo\'llab-quvvatlanmaydi.',
+    uz: "Fayl turi qo'llab-quvvatlanmaydi.",
     ru: 'Тип файла не поддерживается.',
     en: 'Unsupported file type.',
     cyr: 'Файл тури қўллаб-қувватланмайди.',
@@ -285,7 +285,7 @@ export const ERROR_MESSAGES: Record<AppExceptionCode, LocalizedString> = {
     cyr: 'Тест топилмади',
   },
   TEST_NOT_DRAFT: {
-    uz: 'Faqat qoralama holatidagi testlarni o\'zgartirish mumkin',
+    uz: "Faqat qoralama holatidagi testlarni o'zgartirish mumkin",
     ru: 'Можно изменять только тесты в статусе черновика',
     en: 'Only draft tests can be modified',
     cyr: 'Фақат қоралама ҳолатидаги тестларни ўзгартириш мумкин',
@@ -297,7 +297,7 @@ export const ERROR_MESSAGES: Record<AppExceptionCode, LocalizedString> = {
     cyr: 'Тест нашр этилган ҳолатда эмас',
   },
   TEST_IN_USE: {
-    uz: 'Test ishlatilmoqda va o\'chirib bo\'lmaydi',
+    uz: "Test ishlatilmoqda va o'chirib bo'lmaydi",
     ru: 'Тест используется и не может быть удален',
     en: 'Test is in use and cannot be deleted',
     cyr: 'Тест ишлатилмоқда ва ўчириб бўлмайди',
@@ -327,7 +327,7 @@ export const ERROR_MESSAGES: Record<AppExceptionCode, LocalizedString> = {
     cyr: 'Мок тест топилмади',
   },
   MOCK_NOT_ASSIGNED: {
-    uz: 'Faqat tayinlangan mock testlarni o\'chirish mumkin',
+    uz: "Faqat tayinlangan mock testlarni o'chirish mumkin",
     ru: 'Можно удалить только назначенные мок-тесты',
     en: 'Only assigned mock tests can be deleted',
     cyr: 'Фақат тайинланган мок тестларни ўчириш мумкин',
@@ -381,7 +381,7 @@ export const ERROR_MESSAGES: Record<AppExceptionCode, LocalizedString> = {
     cyr: 'Тест аллақачон топширилган',
   },
   NO_AVAILABLE_TESTS: {
-    uz: 'Mavjud testlar yo\'q. Barcha testlar allaqachon topshirilgan.',
+    uz: "Mavjud testlar yo'q. Barcha testlar allaqachon topshirilgan.",
     ru: 'Нет доступных тестов. Все тесты уже сданы.',
     en: 'No available tests. All tests have already been taken.',
     cyr: 'Мавжуд тестлар йўқ. Барча тестлар аллақачон топширилган.',
@@ -397,5 +397,41 @@ export const ERROR_MESSAGES: Record<AppExceptionCode, LocalizedString> = {
     ru: 'Результат не найден',
     en: 'Result not found',
     cyr: 'Натижа топилмади',
+  },
+  SEAT_NOT_FOUND: {
+    uz: "O'rindiq topilmadi.",
+    ru: 'Место не найдено.',
+    en: 'Seat not found.',
+    cyr: 'Ўриндиқ топилмади.',
+  },
+  SEAT_NOT_AVAILABLE: {
+    uz: "Bu o'rindiq band yoki mavjud emas.",
+    ru: 'Это место занято или недоступно.',
+    en: 'This seat is not available.',
+    cyr: 'Бу ўриндиқ банд ёки мавжуд эмас.',
+  },
+  RESERVATION_NOT_FOUND: {
+    uz: 'Band qilish topilmadi.',
+    ru: 'Бронирование не найдено.',
+    en: 'Reservation not found.',
+    cyr: 'Банд қилиш топилмади.',
+  },
+  RESERVATION_NOT_YOURS: {
+    uz: 'Bu band qilish sizga tegishli emas.',
+    ru: 'Это бронирование вам не принадлежит.',
+    en: 'This reservation does not belong to you.',
+    cyr: 'Бу банд қилиш сизга тегишли эмас.',
+  },
+  RESERVATION_CANNOT_BE_CONFIRMED: {
+    uz: 'Bu band qilishni tasdiqlash mumkin emas.',
+    ru: 'Это бронирование не может быть подтверждено.',
+    en: 'This reservation cannot be confirmed.',
+    cyr: 'Бу банд қилишни тасдиқлаш мумкин эмас.',
+  },
+  RESERVATION_EXPIRED: {
+    uz: 'Band qilish muddati tugagan.',
+    ru: 'Срок бронирования истёк.',
+    en: 'Reservation has expired.',
+    cyr: 'Банд қилиш муддати тугаган.',
   },
 };

@@ -31,12 +31,8 @@ export class ExpirationService {
 
     for (const reservation of expiredReservations) {
       try {
-        await this.dataSource.transaction('SERIALIZABLE', async (manager: EntityManager) => {
-          const lockedReservation = await manager
-            .createQueryBuilder(ReservationEntity, 'reservation')
-            .setLock('pessimistic_write')
-            .where('reservation.id = :id', { id: reservation.id })
-            .getOne();
+        await this.dataSource.transaction('READ COMMITTED', async (manager: EntityManager) => {
+          const lockedReservation = await manager.createQueryBuilder(ReservationEntity, 'reservation').setLock('pessimistic_write').where('reservation.id = :id', { id: reservation.id }).getOne();
 
           if (!lockedReservation || lockedReservation.status !== ReservationStatus.RESERVED) {
             return;
@@ -68,5 +64,4 @@ export class ExpirationService {
       this.eventsGateway.emitBulkSeatUpdate(updates);
     }
   }
-
 }

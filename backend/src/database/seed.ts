@@ -66,23 +66,35 @@ async function seed() {
   // Partial indexes yaratish
   const queryRunner = dataSource.createQueryRunner();
 
-  await queryRunner.query(`
+  await queryRunner
+    .query(
+      `
     CREATE UNIQUE INDEX IF NOT EXISTS "UQ_one_active_reservation_per_seat"
     ON "reservations" ("seat_id")
     WHERE "status" IN ('RESERVED', 'CONFIRMED')
-  `).catch(() => console.log('Partial index UQ_one_active_reservation_per_seat: reservations table may not exist yet'));
+  `,
+    )
+    .catch(() => console.log('Partial index UQ_one_active_reservation_per_seat: reservations table may not exist yet'));
 
-  await queryRunner.query(`
+  await queryRunner
+    .query(
+      `
     CREATE INDEX IF NOT EXISTS "IDX_reserved_expiring"
     ON "reservations" ("expires_at")
     WHERE "status" = 'RESERVED'
-  `).catch(() => console.log('Partial index IDX_reserved_expiring: reservations table may not exist yet'));
+  `,
+    )
+    .catch(() => console.log('Partial index IDX_reserved_expiring: reservations table may not exist yet'));
 
-  await queryRunner.query(`
+  await queryRunner
+    .query(
+      `
     CREATE INDEX IF NOT EXISTS "IDX_user_active_reservation"
     ON "reservations" ("user_id")
     WHERE "status" IN ('RESERVED', 'CONFIRMED')
-  `).catch(() => console.log('Partial index IDX_user_active_reservation: reservations table may not exist yet'));
+  `,
+    )
+    .catch(() => console.log('Partial index IDX_user_active_reservation: reservations table may not exist yet'));
 
   await queryRunner.release();
 

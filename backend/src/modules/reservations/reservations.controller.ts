@@ -18,29 +18,19 @@ export class ReservationsController {
   @Post('reserve')
   @UseInterceptors(IdempotencyInterceptor)
   @ReserveSwaggerDoc()
-  reserve(
-    @Body() dto: ReserveSeatDto,
-    @AuthenticatedUser() user: JwtPayload,
-    @Headers('idempotency-key') idempotencyKey?: string,
-  ): Promise<ReservationEntity> {
+  reserve(@Body() dto: ReserveSeatDto, @AuthenticatedUser() user: JwtPayload, @Headers('idempotency-key') idempotencyKey?: string): Promise<ReservationEntity> {
     return this.reservationsService.reserveSeat(dto.seatId, user.sub, idempotencyKey);
   }
 
   @Post('confirm')
   @ConfirmSwaggerDoc()
-  confirm(
-    @Body() dto: ConfirmReservationDto,
-    @AuthenticatedUser() user: JwtPayload,
-  ): Promise<ReservationEntity> {
+  confirm(@Body() dto: ConfirmReservationDto, @AuthenticatedUser() user: JwtPayload): Promise<ReservationEntity> {
     return this.reservationsService.confirmReservation(dto.reservationId, user.sub);
   }
 
   @Post('cancel')
   @CancelSwaggerDoc()
-  cancel(
-    @Body() dto: CancelReservationDto,
-    @AuthenticatedUser() user: JwtPayload,
-  ): Promise<ReservationEntity> {
+  cancel(@Body() dto: CancelReservationDto, @AuthenticatedUser() user: JwtPayload): Promise<ReservationEntity> {
     return this.reservationsService.cancelReservation(dto.reservationId, user.sub);
   }
 

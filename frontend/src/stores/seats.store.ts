@@ -65,6 +65,13 @@ export const useSeatsStore = defineStore("seats", () => {
     };
   };
 
+  const patchSeatFromSocket = (seatId: string, patch: { status: string }) => {
+    const index = seats.value.findIndex((s) => s.id === seatId);
+    if (index === -1) return;
+
+    seats.value[index] = { ...seats.value[index], status: patch.status as ISeat["status"] };
+  };
+
   const selectSeat = (id: string | null) => {
     selectedSeatId.value = id;
   };
@@ -79,6 +86,7 @@ export const useSeatsStore = defineStore("seats", () => {
     updateSeat,
     bulkUpdateSeats,
     patchSeatLocally,
+    patchSeatFromSocket,
     selectSeat,
   };
 });
