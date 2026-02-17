@@ -7,31 +7,18 @@
 <template>
   <div
     class="min-h-screen flex items-center
-      justify-center bg-linear-to-br
-      from-gray-900 via-slate-800
-      to-gray-900 p-4"
+      justify-center bg-gray-950 p-4"
   >
-    <div class="absolute inset-0 opacity-5">
-      <div
-        class="absolute inset-0"
-        style="background-image:
-          radial-gradient(
-            circle at 1px 1px, white 1px,
-            transparent 0);
-          background-size: 40px 40px"
-      ></div>
-    </div>
-
     <div class="relative w-full max-w-md">
-      <div class="glass rounded-2xl p-8 shadow-2xl border border-white/10">
+      <div class="bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-2xl">
         <div class="text-center mb-8">
           <div
             class="w-16 h-16 mx-auto mb-4
-              rounded-2xl bg-amber-500/20
-              backdrop-blur flex items-center
+              rounded-2xl bg-gray-800
+              flex items-center
               justify-center"
           >
-            <svg class="w-8 h-8 text-amber-400" viewBox="0 0 24 24" fill="currentColor">
+            <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M12 1L3 5v6c0 5.55 3.84 10.74
                   9 12 5.16-1.26 9-6.45
@@ -69,7 +56,7 @@
           </div>
 
           <n-button
-            type="warning"
+            type="primary"
             block
             size="large"
             :loading="loading"

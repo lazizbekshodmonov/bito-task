@@ -13,8 +13,8 @@
       <span
         v-if="totalCount > 0"
         class="px-2.5 py-0.5 rounded-full text-xs
-          font-semibold bg-blue-100 text-blue-800
-          dark:bg-blue-900/30 dark:text-blue-300"
+          font-semibold bg-gray-200 text-gray-800
+          dark:bg-gray-700 dark:text-gray-200"
       >
         {{ totalCount }}
       </span>

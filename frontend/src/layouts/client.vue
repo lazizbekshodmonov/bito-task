@@ -31,7 +31,7 @@
                 class="px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                 :class="
                   route.path === '/seats'
-                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                    ? 'bg-gray-100 dark:bg-gray-800 text-black dark:text-white'
                     : `text-gray-600 dark:text-gray-400
                       hover:text-gray-900
                       dark:hover:text-white
@@ -46,7 +46,7 @@
                 class="px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                 :class="
                   route.path === '/reservations'
-                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                    ? 'bg-gray-100 dark:bg-gray-800 text-black dark:text-white'
                     : `text-gray-600 dark:text-gray-400
                       hover:text-gray-900
                       dark:hover:text-white
@@ -85,8 +85,8 @@
                   cursor-pointer hover:opacity-80
                   transition-opacity"
               >
-                <n-avatar :size="34" round class="bg-blue-600">
-                  <icon-user-avatar class="text-white" />
+                <n-avatar :size="34" round class="bg-black dark:bg-white">
+                  <icon-user-avatar class="text-white dark:text-black" />
                 </n-avatar>
                 <div
                   v-if="authStore.user"

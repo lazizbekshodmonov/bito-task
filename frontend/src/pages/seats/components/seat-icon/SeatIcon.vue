@@ -114,12 +114,27 @@
           />
         </svg>
 
-        <!-- Lock icon for confirmed -->
+        <!-- Label on backrest -->
+        <div
+          class="absolute top-[3px] inset-x-0
+            text-center text-[8px] font-bold
+            text-white leading-none"
+          style="text-shadow: 0 1px 2px rgba(0,0,0,0.5)"
+        >
+          {{ seat.label }}
+        </div>
+
+        <!-- Lock icon for confirmed (over label) -->
         <div
           v-if="isConfirmed"
-          class="absolute inset-0 flex items-center justify-center"
+          class="absolute inset-0 flex items-center
+            justify-center"
         >
-          <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+          <svg
+            class="w-4 h-4 text-white"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
             <path
               d="M18 8h-1V6c0-2.76-2.24-5-5-5S7
                 3.24 7 6v2H6c-1.1 0-2 .9-2
@@ -131,14 +146,6 @@
                 1.39 3.1 3.1v2z"
             />
           </svg>
-        </div>
-
-        <!-- Label -->
-        <div
-          class="absolute bottom-0 left-1/2 -translate-x-1/2 text-[9px] font-bold text-white"
-          style="text-shadow: 0 1px 2px rgba(0,0,0,0.5)"
-        >
-          {{ seat.label }}
         </div>
       </div>
     </template>

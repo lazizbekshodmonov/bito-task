@@ -3,12 +3,12 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --color-primary: #0F398A;
-    --color-primary-dark: #4B7BE5;
+    --color-primary: #000000;
+    --color-primary-dark: #ffffff;
 }
 
 :root {
-    --app-primary: #0F398A;
+    --app-primary: #000000;
     --app-border: #e5e7eb;
 
     /* Seat category colors */
@@ -24,7 +24,7 @@
 }
 
 .dark {
-    --app-primary: #4B7BE5;
+    --app-primary: #ffffff;
     --app-border: #3f3f46;
 }
 
@@ -73,5 +73,9 @@ button {
 
 /* Stage gradient */
 .stage-gradient {
-    background: linear-gradient(180deg, rgba(59, 130, 246, 0.3) 0%, transparent 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, transparent 100%);
+}
+
+.dark .stage-gradient {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
 }

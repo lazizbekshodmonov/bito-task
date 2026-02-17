@@ -7,33 +7,23 @@
 <template>
   <div
     class="min-h-screen flex items-center
-      justify-center bg-linear-to-br
-      from-blue-600 via-purple-600
-      to-indigo-700 p-4"
+      justify-center bg-white dark:bg-gray-950 p-4"
   >
-    <!-- Background pattern -->
-    <div class="absolute inset-0 opacity-10">
-      <div
-        class="absolute inset-0"
-        style="background-image:
-          radial-gradient(
-            circle at 1px 1px, white 1px,
-            transparent 0);
-          background-size: 40px 40px"
-      ></div>
-    </div>
-
     <div class="relative w-full max-w-md">
-      <!-- Glass card -->
-      <div class="glass rounded-2xl p-8 shadow-2xl">
+      <!-- Card -->
+      <div
+        class="bg-gray-50 dark:bg-gray-900
+          border border-gray-200 dark:border-gray-800
+          rounded-2xl p-8 shadow-2xl"
+      >
         <!-- Header -->
         <div class="text-center mb-8">
           <div
             class="w-16 h-16 mx-auto mb-4
-              rounded-2xl bg-white/20 backdrop-blur
+              rounded-2xl bg-black dark:bg-white
               flex items-center justify-center"
           >
-            <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+            <svg class="w-8 h-8 text-white dark:text-black" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M4 18v3h3v-3h10v3h3v-3h1a1 1 0
                   001-1V5a1 1 0 00-1-1H3a1 1 0
@@ -41,14 +31,14 @@
               />
             </svg>
           </div>
-          <h1 class="text-2xl font-bold text-white">Welcome Back</h1>
-          <p class="text-white/70 mt-1">Sign in to your DSRS account</p>
+          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Welcome Back</h1>
+          <p class="text-gray-600 dark:text-gray-400 mt-1">Sign in to your DSRS account</p>
         </div>
 
         <!-- Form -->
         <form class="space-y-4" @submit.prevent="handleLogin">
           <div>
-            <label class="block text-sm font-medium text-white/80 mb-1">Email</label>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Email</label>
             <n-input
               v-model:value="email"
               placeholder="Enter your email"
@@ -58,7 +48,7 @@
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-white/80 mb-1">Password</label>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Password</label>
             <n-input
               v-model:value="password"
               placeholder="Enter your password"
@@ -84,17 +74,21 @@
 
         <!-- Links -->
         <div class="mt-6 text-center space-y-2">
-          <p class="text-white/60 text-sm">
+          <p class="text-gray-500 dark:text-gray-400 text-sm">
             Don't have an account?
-            <router-link to="/auth/register" class="text-white font-medium hover:underline">
+            <router-link
+              to="/auth/register"
+              class="text-black dark:text-white
+                font-medium hover:underline"
+            >
               Register
             </router-link>
           </p>
-          <p class="text-white/60 text-sm">
+          <p class="text-gray-500 dark:text-gray-400 text-sm">
             <router-link
               to="/auth/admin-login"
-              class="text-white/80
-                hover:text-white hover:underline"
+              class="text-gray-500 dark:text-gray-400
+                hover:text-black dark:hover:text-white hover:underline"
             >
               Admin? Login here
             </router-link>
@@ -102,9 +96,9 @@
         </div>
 
         <!-- Demo credentials -->
-        <div class="mt-6 p-3 rounded-lg bg-white/10 text-center">
-          <p class="text-xs text-white/50 mb-1">Demo Credentials</p>
-          <p class="text-xs text-white/70 font-mono">admin@dsrs.uz / Admin@123!</p>
+        <div class="mt-6 p-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-center">
+          <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Demo Credentials</p>
+          <p class="text-xs text-gray-700 dark:text-gray-300 font-mono">admin@dsrs.uz / Admin@123!</p>
         </div>
       </div>
     </div>

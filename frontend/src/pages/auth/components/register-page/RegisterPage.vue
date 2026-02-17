@@ -7,31 +7,22 @@
 <template>
   <div
     class="min-h-screen flex items-center
-      justify-center bg-gradient-to-br
-      from-emerald-600 via-teal-600
-      to-cyan-700 p-4"
+      justify-center bg-white dark:bg-gray-950 p-4"
   >
-    <div class="absolute inset-0 opacity-10">
-      <div
-        class="absolute inset-0"
-        style="background-image:
-          radial-gradient(
-            circle at 1px 1px, white 1px,
-            transparent 0);
-          background-size: 40px 40px"
-      ></div>
-    </div>
-
     <div class="relative w-full max-w-md">
-      <div class="glass rounded-2xl p-8 shadow-2xl">
+      <div
+        class="bg-gray-50 dark:bg-gray-900
+          border border-gray-200 dark:border-gray-800
+          rounded-2xl p-8 shadow-2xl"
+      >
         <div class="text-center mb-8">
           <div
             class="w-16 h-16 mx-auto mb-4
-              rounded-2xl bg-white/20 backdrop-blur
+              rounded-2xl bg-black dark:bg-white
               flex items-center justify-center"
           >
             <svg
-              class="w-8 h-8 text-white"
+              class="w-8 h-8 text-white dark:text-black"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -53,18 +44,18 @@
               />
             </svg>
           </div>
-          <h1 class="text-2xl font-bold text-white">Create Account</h1>
-          <p class="text-white/70 mt-1">Join the DSRS platform</p>
+          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Create Account</h1>
+          <p class="text-gray-600 dark:text-gray-400 mt-1">Join the DSRS platform</p>
         </div>
 
         <form class="space-y-4" @submit.prevent="handleRegister">
           <div>
-            <label class="block text-sm font-medium text-white/80 mb-1">Full Name</label>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Full Name</label>
             <n-input v-model:value="name" placeholder="Enter your name" size="large" />
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-white/80 mb-1">Email</label>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Email</label>
             <n-input
               v-model:value="email"
               placeholder="Enter your email"
@@ -74,7 +65,7 @@
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-white/80 mb-1">Password</label>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Password</label>
             <n-input
               v-model:value="password"
               placeholder="Create a password"
@@ -83,23 +74,39 @@
               show-password-on="click"
             />
             <div class="mt-2 grid grid-cols-2 gap-1 text-xs">
-              <span :class="password.length >= 8 ? 'text-emerald-300' : 'text-white/40'">
+              <span
+                :class="password.length >= 8
+                  ? 'text-gray-900 dark:text-white'
+                  : 'text-gray-400 dark:text-gray-600'"
+              >
                 8+ characters
               </span>
-              <span :class="/[A-Z]/.test(password) ? 'text-emerald-300' : 'text-white/40'">
+              <span
+                :class="/[A-Z]/.test(password)
+                  ? 'text-gray-900 dark:text-white'
+                  : 'text-gray-400 dark:text-gray-600'"
+              >
                 Uppercase
               </span>
-              <span :class="/[a-z]/.test(password) ? 'text-emerald-300' : 'text-white/40'">
+              <span
+                :class="/[a-z]/.test(password)
+                  ? 'text-gray-900 dark:text-white'
+                  : 'text-gray-400 dark:text-gray-600'"
+              >
                 Lowercase
               </span>
-              <span :class="/[0-9]/.test(password) ? 'text-emerald-300' : 'text-white/40'">
+              <span
+                :class="/[0-9]/.test(password)
+                  ? 'text-gray-900 dark:text-white'
+                  : 'text-gray-400 dark:text-gray-600'"
+              >
                 Digit
               </span>
               <span
                 :class="
                   /[!@#$%^&*(),.?&quot;:{}|<>]/.test(password)
-                    ? 'text-emerald-300'
-                    : 'text-white/40'
+                    ? 'text-gray-900 dark:text-white'
+                    : 'text-gray-400 dark:text-gray-600'
                 "
               >
                 Special char
@@ -121,9 +128,13 @@
         </form>
 
         <div class="mt-6 text-center">
-          <p class="text-white/60 text-sm">
+          <p class="text-gray-500 dark:text-gray-400 text-sm">
             Already have an account?
-            <router-link to="/auth/login" class="text-white font-medium hover:underline">
+            <router-link
+              to="/auth/login"
+              class="text-black dark:text-white
+                font-medium hover:underline"
+            >
               Sign In
             </router-link>
           </p>

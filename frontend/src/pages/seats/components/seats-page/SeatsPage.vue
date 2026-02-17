@@ -19,10 +19,10 @@
 <template>
   <div class="min-h-screen">
     <!-- Hero -->
-    <div class="bg-linear-to-br from-blue-600 to-purple-700 text-white py-12 px-4">
+    <div class="bg-black dark:bg-white text-white dark:text-black py-12 px-4">
       <div class="max-w-6xl mx-auto text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-3">Select Your Seat</h1>
-        <p class="text-white/70 text-lg">Choose the perfect spot for an unforgettable experience</p>
+        <p class="text-white/70 dark:text-black/60 text-lg">Choose the perfect spot for an unforgettable experience</p>
       </div>
     </div>
 
@@ -35,13 +35,13 @@
           class="px-5 py-2 rounded-full text-sm font-medium transition-all"
           :class="
             activeFilter === cat.key
-              ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
+              ? 'bg-black dark:bg-white text-white dark:text-black shadow-lg'
               : `bg-white dark:bg-gray-800
                 text-gray-600 dark:text-gray-300
                 border border-gray-200
                 dark:border-gray-700
-                hover:border-blue-300
-                dark:hover:border-blue-600`
+                hover:border-gray-400
+                dark:hover:border-gray-500`
           "
           @click="activeFilter = cat.key"
         >
@@ -64,12 +64,12 @@
                 class="mx-auto max-w-lg h-12
                   rounded-b-[50%] stage-gradient
                   flex items-center justify-center
-                  border-b-4 border-blue-400/50"
+                  border-b-4 border-gray-400 dark:border-gray-600"
               >
                 <span
                   class="text-sm font-bold
-                    tracking-[0.3em] text-blue-600
-                    dark:text-blue-400 uppercase"
+                    tracking-[0.3em] text-gray-600
+                    dark:text-gray-400 uppercase"
                 >
                   Stage
                 </span>

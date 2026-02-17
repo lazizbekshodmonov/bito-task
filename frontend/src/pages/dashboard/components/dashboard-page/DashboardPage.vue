@@ -87,12 +87,12 @@
               class="mx-auto max-w-sm h-10
                 rounded-b-[50%] stage-gradient
                 flex items-center justify-center
-                border-b-4 border-blue-400/50"
+                border-b-4 border-gray-400 dark:border-gray-600"
             >
               <span
                 class="text-xs font-bold
-                  tracking-[0.3em] text-blue-600
-                  dark:text-blue-400 uppercase"
+                  tracking-[0.3em] text-gray-600
+                  dark:text-gray-400 uppercase"
               >
                 Stage
               </span>
