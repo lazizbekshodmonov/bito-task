@@ -1,8 +1,10 @@
 import axios from "axios";
 
 // ================== AXIOS INSTANCE ==================
+const API_BASE = import.meta.env.VITE_API_BASE || "";
+
 export const axiosPlugin = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE,
+  baseURL: API_BASE,
   timeout: 60000,
 });
 
@@ -19,7 +21,7 @@ export const ensureTokenRefreshed = (): Promise<void> => {
   const refreshToken = localStorage.getItem("refreshToken");
 
   refreshPromise = axios
-    .post(`${import.meta.env.VITE_API_BASE}/api/v1/auth/refresh`, null, {
+    .post(`${API_BASE}/api/v1/auth/refresh`, null, {
       headers: { "X-Refresh-Token": refreshToken || "" },
     })
     .then((res) => {
