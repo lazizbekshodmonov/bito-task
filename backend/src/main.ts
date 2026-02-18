@@ -20,7 +20,7 @@ function shouldCompress(req: Request, res: Response) {
 export async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     logger: new ConsoleLogger({
-      prefix: 'Mockly',
+      prefix: 'DSRS',
     }),
   });
 
