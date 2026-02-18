@@ -1,0 +1,24 @@
+{
+  "name": "load-tests",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "tsx src/run-all.ts",
+    "smoke": "tsx src/01-smoke.ts",
+    "race": "tsx src/02-race-condition.ts",
+    "expired": "tsx src/03-expired-confirm.ts",
+    "double": "tsx src/04-double-booking.ts",
+    "concurrent": "tsx src/05-concurrent-instances.ts",
+    "pressure": "tsx src/06-db-pressure.ts",
+    "crash": "tsx src/07-crash-recovery.ts",
+    "load": "tsx src/08-full-load.ts"
+  },
+  "dependencies": {
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.3",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
